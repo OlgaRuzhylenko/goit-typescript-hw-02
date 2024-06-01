@@ -16,7 +16,7 @@ interface FetchImgParams {
     currentPage: number;
   }
 
-export const fetchImg = async ({searchQuery, currentPage}:FetchImgParams): Promise<ImageResult> => {
+export const fetchImg = async ({searchQuery, currentPage}:FetchImgParams): Promise<ImageResult[]> => {
     const response = await axios.get('photos/', {
         params: {
             client_id: API_KEY,

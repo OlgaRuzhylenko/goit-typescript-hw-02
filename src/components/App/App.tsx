@@ -66,10 +66,10 @@ export default function App() {
       async function getImages(){
     try {
       setIsLoading(true)
-      const data = await fetchImg({searchQuery:query, currentPage:page});
-      setImages((prevImages)=>{
-  return [...prevImages, ...data]
-      })
+      const data: ImageResult[] = await fetchImg({ searchQuery: query, currentPage: page });
+      setImages((prevImages) => {
+        return [...prevImages, ...data];
+      });
     } catch (error) {
       setError(true)
     } finally {
