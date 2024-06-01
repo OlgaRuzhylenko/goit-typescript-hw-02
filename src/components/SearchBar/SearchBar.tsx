@@ -10,10 +10,11 @@ interface ISearchBarProps {
 const SearchBar: React.FC<ISearchBarProps> = ({ onSearch }) => {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const form = evt.target;
-    const text = form.elements.text.value;
+    const form = evt.target as HTMLFormElement;
+    const text = (form.elements.namedItem('text') as HTMLInputElement).value;
     if (text === "") {
       toast.error("Please, enter your request");
+      return
     }
     onSearch(text);
     form.reset();

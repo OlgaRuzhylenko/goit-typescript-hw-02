@@ -1,15 +1,8 @@
 import css from "./ImageCard.module.css";
-
-interface ISelectedImage {
-  id: string;
-  urls: {
-    small: string;
-  };
-  alt_description: string;
-}
+import { ImageResult } from "../pictures-api";
 
 interface IImageCardProps {
-  item: ISelectedImage;
+  item: ImageResult;
   onClick: () => void;
 }
 

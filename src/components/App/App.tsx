@@ -7,7 +7,7 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import ImageModal from "../ImageModal/ImageModal";
 import Modal from 'react-modal';
 import css from "./App.module.css";
-import { fetchImg } from "../pictures-api";
+import { fetchImg, ImageResult } from "../pictures-api";
 Modal.setAppElement('#root');
 export interface IImage {
   id: string;
@@ -17,15 +17,15 @@ export interface IImage {
   url: string;
   description: string;
 }
-interface IImageClicked {
-  urls: {
-    regular: string;
-  };
-  alt_description: string;
-}
+// interface IImageClicked {
+//   urls: {
+//     regular: string;
+//   };
+//   alt_description: string;
+// }
 
 export default function App() {
-  const [images, setImages] = useState<IImage[]>([]);
+  const [images, setImages] = useState<ImageResult[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
@@ -51,7 +51,7 @@ export default function App() {
     setSelectedImage(null);
   };
 
-  const handleImageClick = (image: IImageClicked) => {
+  const handleImageClick = (image: ImageResult) => {
     setSelectedImage({
       url: image.urls.regular,
       description: image.alt_description,
@@ -88,7 +88,7 @@ export default function App() {
       {isLoading && <Loader/>}
       {images.length > 0 && <LoadMoreBtn onClick={handleLoadMore} />}
 
-      <ImageModal isOpen={modalIsOpen} closeModal={closeModal} imageData={selectedImage} />
+      {selectedImage && <ImageModal isOpen={modalIsOpen} closeModal={closeModal} imageData={selectedImage} />}
     </div>
   );
 }

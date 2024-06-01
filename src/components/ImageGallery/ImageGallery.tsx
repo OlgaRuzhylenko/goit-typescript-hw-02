@@ -1,10 +1,10 @@
 import ImageCard from "../ImageCard/ImageCard";
-import {IImage} from '../App/App'
+import { ImageResult } from "../pictures-api";
 import css from './ImageGallery.module.css'
 
 interface IImageDalleryProps {
-    items: IImage[],
-    onImageClick: (item: IImage) => void,
+    items: ImageResult[],
+    onImageClick: (item: ImageResult) => void,
 }
 
 const ImageGallery: React.FC<IImageDalleryProps> = ({items, onImageClick}) => {
